@@ -18,6 +18,7 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: true        # necessario per curl-cffi (dipendenze native)
+    requirementsFile: requirements.txt   # generato da uv export
     slim: true
     strip: false
 
