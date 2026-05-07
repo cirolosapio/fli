@@ -22,7 +22,7 @@ jobs:
         run: uv python install 3.12
 
       - name: Export requirements.txt
-        run: uv export --no-dev --no-hashes --no-emit-project -o requirements.txt
+        run: uv export --no-dev --no-hashes --no-emit-project --extra mcp -o requirements.txt
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
