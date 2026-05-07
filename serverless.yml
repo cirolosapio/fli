@@ -17,7 +17,7 @@ plugins:
 
 custom:
   pythonRequirements:
-    dockerizePip: true        # necessario per curl-cffi (dipendenze native)
+    dockerizePip: non-linux   # su Linux CI (GitHub Actions) usa pip nativo, compatibile con Lambda
     requirementsFile: requirements.txt   # generato da uv export
     slim: true
     strip: false
