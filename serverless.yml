@@ -1,0 +1,30 @@
+service: fli-mcp
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: eu-central-1       # cambia con la tua region
+  architecture: x86_64
+  memorySize: 512
+  timeout: 30                # Google Flights può essere lento
+  environment:
+    PYTHONPATH: /var/task
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true        # necessario per curl-cffi (dipendenze native)
+    slim: true
+    strip: false
+
+functions:
+  fli-mcp:
+    handler: handler.handler
+    url:
+      cors: true              # abilita CORS per chiamate da browser/client MCP
+      invokeMode: BUFFERED    # oppure RESPONSE_STREAM se usi streaming MCP
+    events: []                # nessun trigger API Gateway, solo Function URL
