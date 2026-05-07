@@ -1,5 +1,7 @@
 from mangum import Mangum
-from fli.mcp.server import create_http_app   # aggiusta il path se diverso
+from fli.mcp.server import mcp  # l'oggetto FastMCP si chiama quasi certamente 'mcp'
 
-app = create_http_app()   # oppure importa direttamente l'app FastAPI
+# fastmcp espone l'app ASGI per il deploy con Mangum
+app = mcp.http_app()
+
 handler = Mangum(app, lifespan="off")
